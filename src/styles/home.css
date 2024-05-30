@@ -1,0 +1,11 @@
+.characters-container {
+    display: flex;
+}
+
+img {
+    height: 150px;
+}
+
+.single-character-container {
+    margin-left: 15px;
+}
