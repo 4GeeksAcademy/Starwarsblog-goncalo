@@ -4,9 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			character: [],
 			planets: [],
 			vehicles: [],
-			characterDetails: null,
-			planetDetails:null,
-			vehicleDetails: null
+			characterDetails: {},
+			planetDetails:{},
+			vehicleDetails: {}
 			
 		},
 		actions: {
@@ -19,6 +19,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error('Fail fetching characters', err)
 				}
 			},
+			getCharacterDetails: async (uid) => {
+                try {
+                    const resp = await fetch(`https://www.swapi.tech/api/people/${uid}`);
+                    const data = await resp.json();
+                    const characterDetails = getStore().characterDetails;
+                    characterDetails[uid] = data.result;
+                    setStore({ characterDetails: { ...characterDetails } });
+					console.log("Updated store with character details:", getStore().characterDetails);
+                } catch (error) {
+                    console.error("Failed fetching the character details", error);
+                }
+            },
 			getPlanets: async () => {
 				try {
 					const resp = await fetch("https://www.swapi.tech/api/planets/")
@@ -29,38 +41,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Failed to fetch planets: ",error)
 				}
 			},
+			getPlanetDetails: async (uid) => {
+				try {
+					const resp = await fetch(`https://www.swapi.tech/api/planets/${uid}`)
+					const data = await resp.json()
+					const planetDetails = getStore().planetDetails
+					planetDetails[uid] = data.result;
+                    setStore({ planetDetails: { ...planetDetails } });
+			
+				} catch (error) {
+					console.error("Error Fetching the planet details", error)
+				}
+			},
 			getVehicles: async () => {
 				try {
-					const resp = await fetch("https://www.swapi.tech/api/vehicles/")
+					const resp = await fetch("https://www.swapi.tech/api/starships/")
 					const data = await resp.json()
 					setStore({vehicles: data.results})
 				} catch (error) {
 					console.error("Fail fetching vehicles", error)
 				}
 			},
-			getCharacterDetails: async (uid) => {
-				try {
-					const resp = await fetch(`https://www.swapi.tech/api/people/${uid}`)
-					const data = await resp.json()
-					setStore({characterDetails: data.result})
-				} catch (error) {
-					console.error("Fail fetching the character details", error)
-				}
-			},
-			getPlanetDetails: async (uid) => {
-				try {
-					const resp = await fetch(`https://www.swapi.tech/api/planets/${uid}`)
-					const data = await resp.json()
-					setStore({planetDetails: data.result})
-				} catch (error) {
-					console.error("Failed fetching the single planet", error)
-				}
-			},
 			getVehicleDetails: async (uid) => {
 				try {
-					const resp = await fetch(`https://www.swapi.tech/api/vehicles/${uid}`)
+					const resp = await fetch(`https://www.swapi.tech/api/starships/${uid}`)
 					const data = await resp.json()
-					setStore({vehicleDetails: data.result})
+					const vehicleDetails = getStore().vehicleDetails
+					vehicleDetails[uid] = data.result.properties;
+                    setStore({ vehicleDetails: { ...vehicleDetails } });
+					console.log("Updated store with vehicle details:", getStore().vehicleDetails);
 				} catch (error) {
 					console.error("Fail fetching the vehicle details", error)
 				}
