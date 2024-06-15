@@ -22,13 +22,13 @@ export const CardVehicle = ({ uid }) => {
         <div className="card" key={uid}>
             <div className="card-body">
                 {loading ? (
-                    <p>Loading details...</p>
+                    <p className='bg-secondary'>Loading details...</p>
                 ) : vehicle ? (
-                    <>
+                    <div className='bg-secondary'>
                         <h5 className="card-title">{vehicle.name}</h5>
                         <p>Passengers: {vehicle.passengers}</p>
                         <p>Crew: {vehicle.crew}</p>
-                    </>
+                    </div>
                 ) : (
                     <p>Vehicle details not found.</p>
                 )}

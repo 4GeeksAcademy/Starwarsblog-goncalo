@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			vehicles: [],
 			characterDetails: {},
 			planetDetails:{},
-			vehicleDetails: {}
+			vehicleDetails: {},
+			favorites: []
 			
 		},
 		actions: {
@@ -26,7 +27,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                     const characterDetails = getStore().characterDetails;
                     characterDetails[uid] = data.result;
                     setStore({ characterDetails: { ...characterDetails } });
-					console.log("Updated store with character details:", getStore().characterDetails);
                 } catch (error) {
                     console.error("Failed fetching the character details", error);
                 }
@@ -73,6 +73,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error("Fail fetching the vehicle details", error)
 				}
+			},
+			toggleFavorite: (uid, type) => {
+				const store = getStore()
+				const newFavorites = store.favorites.includes(uid) ? 
+					store.favorites.filter(fav => fav !== uid && fav.type === type) :
+					[...store.favorites, {uid, type}]
+				setStore({ favorites: newFavorites})
 			}
 		}
 	};

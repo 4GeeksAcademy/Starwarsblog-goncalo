@@ -1,0 +1,13 @@
+.image-logo {
+    height: 50px;
+    width: 50px;
+    margin-left: 20px;
+}
+
+nav {
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/014/191/857/small_2x/animation-of-particles-floating-in-space-colors-stars-background-video.jpg');
+}
+
+.favourites-container {
+    margin-right: 20px;
+}
