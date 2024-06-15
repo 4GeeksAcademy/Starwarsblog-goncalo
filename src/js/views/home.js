@@ -12,7 +12,7 @@ export const Home = () => {
         <div className="container-fluid">
             <h1 className="mt-4">Characters</h1>
             <hr className="my-4 hr-danger" />
-            <div className="cards-container">
+            <div className="cards-container  d-flex ">
                 {store.character.map(character => (
                     <div key={character.uid} className="d-inline-block  bg-secondary">
                         <img 

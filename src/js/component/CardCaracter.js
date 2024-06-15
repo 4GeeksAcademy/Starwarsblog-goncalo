@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../store/appContext';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
@@ -21,10 +21,17 @@ export const CardCaracter = ({ uid }) => {
     }, [uid, actions, store.characterDetails]);
 
     const character = store.characterDetails[uid];
-    const isFavorite = (uid, type) => {
-		return store.favorites.some(fav => fav.uid === uid && fav.type === type);
-	};
-   
+
+    const isFavorite = store.favorites.some(fav => fav.uid === uid && fav.type === 'character');
+
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            actions.removeFromFavorites({ uid, type: 'character', name: character.properties.name });
+        } else {
+            actions.addToFavorites({ uid, type: 'character', name: character.properties.name });
+        }
+    };
+
     return (
         <div key={uid}>
             <div className="card-body">
@@ -42,15 +49,11 @@ export const CardCaracter = ({ uid }) => {
                             </Link>
                             <button 
                                 className="btn btn-danger" 
-                                onClick={() => actions.toggleFavorite(character.uid, 'character')}
+                                onClick={toggleFavorite}
                             >
-                                {isFavorite(character.uid, 'character') ? (
-                                    <FontAwesomeIcon icon={solidHeart} />
-                                ) : (
-                                    <FontAwesomeIcon icon={regularHeart} />
-                                )}
-                                {isFavorite(character.uid, 'character') ? ' Unfavorite' : ' Favorite'}
-						    </button>
+                                <FontAwesomeIcon icon={isFavorite ? solidHeart : regularHeart} />
+                                {isFavorite ? ' Unfavorite' : ' Favorite'}
+                            </button>
                         </div>
                     </div>
                 ) : (

@@ -74,13 +74,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Fail fetching the vehicle details", error)
 				}
 			},
-			toggleFavorite: (uid, type) => {
-				const store = getStore()
-				const newFavorites = store.favorites.includes(uid) ? 
-					store.favorites.filter(fav => fav !== uid && fav.type === type) :
-					[...store.favorites, {uid, type}]
-				setStore({ favorites: newFavorites})
-			}
+			addToFavorites: (favoriteItem) => {
+                const store = getStore();
+                const updatedFavorites = [...store.favorites, favoriteItem];
+                setStore({ ...store, favorites: updatedFavorites });
+				console.log("Added to favorites:", updatedFavorites);
+            },
+            removeFromFavorites: (favoriteItem) => {
+                const store = getStore();
+                const updatedFavorites = store.favorites.filter((favorite) => {
+                    return favorite.name !== favoriteItem.name;
+                });
+                setStore({ ...store, favorites: updatedFavorites });
+            }
 		}
 	};
 };

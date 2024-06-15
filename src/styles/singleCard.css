@@ -1,15 +1,4 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/014/191/857/small_2x/animation-of-particles-floating-in-space-colors-stars-background-video.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: white;
-    font-family: Arial, sans-serif;
-}
+
 
 .full-img {
     width: 100%;
