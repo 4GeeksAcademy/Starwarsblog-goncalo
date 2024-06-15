@@ -67,9 +67,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const resp = await fetch(`https://www.swapi.tech/api/starships/${uid}`)
 					const data = await resp.json()
 					const vehicleDetails = getStore().vehicleDetails
-					vehicleDetails[uid] = data.result.properties;
+					vehicleDetails[uid] = data.result;
                     setStore({ vehicleDetails: { ...vehicleDetails } });
-					console.log("Updated store with vehicle details:", getStore().vehicleDetails);
 				} catch (error) {
 					console.error("Fail fetching the vehicle details", error)
 				}
