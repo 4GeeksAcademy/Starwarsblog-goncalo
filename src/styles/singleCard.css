@@ -18,3 +18,16 @@
 .hr-danger {
     border: 1px solid white
 }
+
+.fav-button {
+    margin-right: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.favorite-button {
+    margin-left: auto;
+}

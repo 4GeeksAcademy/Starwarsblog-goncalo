@@ -12,11 +12,10 @@ export const Home = () => {
         const chunkSize = 4;
         const chunks = [];
 
-        // Filter out items without photos
         const filteredItems = items.filter(item => {
             const imgUrl = `https://starwars-visualguide.com/assets/img/${type}/${item.uid}.jpg`;
-            return imgUrl !== "https://starwars-visualguide.com/assets/img/starships/5.jpg" && 
-                   imgUrl !== "https://starwars-visualguide.com/assets/img/starships/6.jpg" &&
+            return imgUrl !== "https://starwars-visualguide.com/assets/img/starships/2.jpg" && 
+                   imgUrl !== "https://starwars-visualguide.com/assets/img/starships/3.jpg" &&
                    imgUrl !== "https://starwars-visualguide.com/assets/img/starships/17.jpg";
         });
 

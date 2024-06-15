@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from "react-router-dom";
+import "../../styles/singleCard.css"
 
 export const CardVehicle = ({ uid }) => {
     const { store, actions } = useContext(Context);
@@ -42,12 +43,12 @@ export const CardVehicle = ({ uid }) => {
                         <h5 className="card-title">{vehicle.properties.name}</h5>
                         <p className='card-text'>Passengers: {vehicle.properties.passengers}</p>
                         <p className='card-text'>Crew: {vehicle.properties.crew}</p>
-                        <div>
+                        <div className="button-group">
                             <Link to={`/singleVehicle/${uid}`} className='btn btn-warning btn-lg mt-4'>
                                 Learn More
                             </Link>
                             <button 
-                                className="btn btn-danger" 
+                                className="btn btn-danger fav-button" 
                                 onClick={toggleFavorite}
                             >
                                 <FontAwesomeIcon icon={isFavorite ? solidHeart : regularHeart} />

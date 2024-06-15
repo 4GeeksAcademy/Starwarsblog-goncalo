@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import "../../styles/singleCard.css"
 
 export const CardPlanet = ({ uid }) => {
     const { store, actions } = useContext(Context);
@@ -42,12 +43,12 @@ export const CardPlanet = ({ uid }) => {
                         <h5 className="card-title">{planet.properties.name}</h5>
                         <p className='card-text'>Population: {planet.properties.population}</p>
                         <p className='card-text'>Terrain: {planet.properties.terrain}</p>
-                        <div>
+                        <div className="button-group">
                             <Link to={`/singlePlanet/${uid}`} className='btn btn-warning btn-lg mt-4'>
                                 Learn More
                             </Link>
                             <button 
-                                className="btn btn-danger" 
+                                className="btn btn-danger fav-button" 
                                 onClick={toggleFavorite}
                             >
                                 <FontAwesomeIcon icon={isFavorite ? solidHeart : regularHeart} />
